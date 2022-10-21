@@ -31,12 +31,24 @@ services:
       timeout: 10s
       retries: 10
 
+   :
+    build: ./Admin/
+    container_name: admin
+    depends_on:
+      broker_01:
+        condition: service_healthy
+    environment:
+      CLIENT_ID: producer
+      BROKER_01: broker_01:9092
+      TOPIC: Example
+      MESSAGES: 50000
+
   producer:
     build: ./Producer/
     container_name: producer_01
     depends_on:
-      broker_01:
-        condition: service_healthy
+      admin:
+        condition: service_completed_successfully
     environment:
       CLIENT_ID: producer
       BROKER_01: broker_01:9092
@@ -47,8 +59,8 @@ services:
     build: ./Consumer/
     container_name: consumer_01
     depends_on:
-      broker_01:
-        condition: service_healthy
+      admin:
+        condition: service_completed_successfully
     environment:
       CLIENT_ID: consumer
       BROKER_01: broker_01:9092
