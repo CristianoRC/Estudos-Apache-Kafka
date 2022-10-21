@@ -11,15 +11,21 @@ const kafka = new Kafka({
     brokers: [broker]
 });
 
-const producer = kafka.producer();
-producer.connect();
 
-for (let index = 0; index < numberOfMessages; index++) {
-    const message = { value: faker.name.fullName() };
-    producer.send({
-        topic: topic,
-        messages: [message],
-    });
+const run = async () => {
+    const producer = kafka.producer();
+    await producer.connect();
+    for (let index = 0; index < numberOfMessages; index++) {
+        const message = { value: faker.name.fullName() };
+        await producer.send({
+            topic: topic,
+            messages: [message],
+        });
+    }
+    await producer.disconnect();
 }
 
-producer.disconnect();
+run().then(() => {
+    console.log("All messages was processed");
+    process.exit(0);
+})

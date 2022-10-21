@@ -9,15 +9,18 @@ const kafka = new Kafka({
     brokers: [broker]
 });
 
-const consumer = kafka.consumer({ groupId: clientId });
+const run = async () => {
+    const consumer = kafka.consumer({ groupId: clientId });
+    await consumer.connect();
+    consumer.subscribe({ topic: topic, fromBeginning: true });
+    await consumer.run({
+        eachMessage: async ({ topic, partition, message }) => {
+            console.log({ value: message.value.toString() });
+        }
+    })
+};
 
-consumer.connect().then();
-consumer.subscribe({ topic: topic, fromBeginning: true }).then();
-
-consumer.run({
-    eachMessage: async ({ topic, partition, message }) => {
-        console.log({
-            value: message.value.toString()
-        })
-    }
-}).then();
+run().then(() => {
+    console.log("All messages was processed");
+    process.exit(0);
+})
