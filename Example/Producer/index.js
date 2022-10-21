@@ -16,7 +16,6 @@ producer.connect();
 
 for (let index = 0; index < numberOfMessages; index++) {
     const message = { value: faker.name.fullName() };
-    //console.log(message);
     producer.send({
         topic: topic,
         messages: [message],

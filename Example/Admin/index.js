@@ -6,7 +6,9 @@ const topic = process.env.TOPIC;
 
 const kafka = new Kafka({
     clientId: clientId,
-    brokers: [broker]
+    brokers: [broker],
+    ssl: false,
+    sasl: null
 });
 
 const admin = kafka.admin()
@@ -18,8 +20,11 @@ const run = async () => {
         waitForLeaders: true,
     });
     await admin.createPartitions({
-        topicPartitions: [{ topic: topic, count: 1 }],
+        topicPartitions: [{ topic: topic, count: 3 }],
     });
 };
 
-run().then(() => console.log("Topics were created"));
+run().then(() => {
+    console.log("Topics were created");
+    process.exit(0);
+});
