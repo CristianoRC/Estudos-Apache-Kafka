@@ -6,11 +6,10 @@ const topic = process.env.TOPIC;
 
 const kafka = new Kafka({
     clientId: clientId,
-    brokers: [broker],
-    ssl: false
+    brokers: [broker]
 })
 
-const consumer = kafka.consumer({ groupId: 'example-group' })
+const consumer = kafka.consumer({ groupId: clientId })
 
 consumer.connect().then();
 consumer.subscribe({ topic: topic, fromBeginning: true }).then();
@@ -20,5 +19,5 @@ consumer.run({
         console.log({
             value: message.value.toString(),
         })
-    },
+    }
 }).then();
