@@ -8,7 +8,7 @@ const kafka = new Kafka({
     clientId: clientId,
     brokers: [broker],
     ssl: false
-})
+});
 
 const consumer = kafka.consumer({ groupId: clientId });
 
@@ -18,7 +18,7 @@ consumer.subscribe({ topic: topic, fromBeginning: true }).then();
 consumer.run({
     eachMessage: async ({ topic, partition, message }) => {
         console.log({
-            value: message.value.toString(),
+            value: message.value.toString()
         })
     }
 }).then();

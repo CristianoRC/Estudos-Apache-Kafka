@@ -10,10 +10,10 @@ const kafka = new Kafka({
     clientId: clientId,
     brokers: [broker],
     ssl: false
-})
+});
 
-const producer = kafka.producer()
-producer.connect()
+const producer = kafka.producer();
+producer.connect();
 
 for (let index = 0; index < numberOfMessages; index++) {
     const message = { value: faker.name.fullName() };
@@ -24,4 +24,4 @@ for (let index = 0; index < numberOfMessages; index++) {
     });
 }
 
-producer.disconnect()
+producer.disconnect();
