@@ -6,8 +6,7 @@ const topic = process.env.TOPIC;
 
 const kafka = new Kafka({
     clientId: clientId,
-    brokers: [broker],
-    ssl: false
+    brokers: [broker]
 });
 
 const admin = kafka.admin()

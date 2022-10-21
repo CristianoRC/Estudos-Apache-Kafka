@@ -38,7 +38,7 @@ services:
       broker_01:
         condition: service_healthy
     environment:
-      CLIENT_ID: producer
+      CLIENT_ID: admin
       BROKER_01: broker_01:9092
       TOPIC: Example
       MESSAGES: 50000
