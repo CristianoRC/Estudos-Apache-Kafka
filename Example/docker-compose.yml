@@ -33,6 +33,8 @@ services:
     environment:
       CLIENT_ID: producer
       BROKER_01: broker_01:9092
+      MESSAGES: 50000
+      TOPIC: Example
 
   consumer:
     build: ./Consumer/
