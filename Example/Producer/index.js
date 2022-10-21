@@ -11,12 +11,12 @@ const kafka = new Kafka({
     brokers: [broker]
 });
 
-
 const run = async () => {
     const producer = kafka.producer();
     await producer.connect();
     for (let index = 0; index < numberOfMessages; index++) {
-        const message = { value: faker.name.fullName() };
+        var messageJson = JSON.stringify({ Name: faker.name.firstName(), LastName: faker.name.lastName() });
+        const message = { value: messageJson };
         await producer.send({
             topic: topic,
             messages: [message],
