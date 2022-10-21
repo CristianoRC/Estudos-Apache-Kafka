@@ -8,6 +8,8 @@ services:
       ZOOKEEPER_TICK_TIME: 2000
     ports:
       - 2181:2181
+    networks:
+      - kafka_network
 
   broker_01:
     image: confluentinc/cp-kafka:7.0.1
@@ -24,6 +26,8 @@ services:
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
       KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
       KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+    networks:
+      - kafka_network
     healthcheck:
       test: nc -z localhost 9092 || exit -1
       start_period: 15s
@@ -42,6 +46,8 @@ services:
       BROKER_01: broker_01:9092
       TOPIC: Example
       MESSAGES: 50000
+    networks:
+      - kafka_network
 
   producer:
     build: ./Producer/
@@ -54,6 +60,8 @@ services:
       BROKER_01: broker_01:9092
       TOPIC: Example
       MESSAGES: 50000
+    networks:
+      - kafka_network
       
   consumer:
     build: ./Consumer/
@@ -65,3 +73,8 @@ services:
       CLIENT_ID: consumer
       BROKER_01: broker_01:9092
       TOPIC: Example
+    networks:
+      - kafka_network
+
+networks:
+  kafka_network:
