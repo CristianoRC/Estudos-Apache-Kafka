@@ -33,9 +33,9 @@ services:
     environment:
       CLIENT_ID: producer
       BROKER_01: broker_01:9092
-      MESSAGES: 50000
       TOPIC: Example
-
+      MESSAGES: 50000
+      
   consumer:
     build: ./Consumer/
     container_name: consumer_01
@@ -44,3 +44,4 @@ services:
     environment:
       CLIENT_ID: consumer
       BROKER_01: broker_01:9092
+      TOPIC: Example
