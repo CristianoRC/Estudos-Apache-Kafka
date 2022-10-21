@@ -23,4 +23,4 @@ const run = async () => {
     });
 };
 
-run.then(() => console.log("Topics were created"));
+run().then(() => console.log("Topics were created"));
