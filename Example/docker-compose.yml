@@ -69,7 +69,7 @@ services:
     build: ./Consumer/
     container_name: consumer_01
     depends_on:
-      admin:
+      producer:
         condition: service_completed_successfully
     environment:
       CLIENT_ID: consumer
