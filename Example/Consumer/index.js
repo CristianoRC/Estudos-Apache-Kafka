@@ -6,10 +6,11 @@ const topic = process.env.TOPIC;
 
 const kafka = new Kafka({
     clientId: clientId,
-    brokers: [broker]
+    brokers: [broker],
+    ssl: false
 })
 
-const consumer = kafka.consumer({ groupId: clientId })
+const consumer = kafka.consumer({ groupId: clientId });
 
 consumer.connect().then();
 consumer.subscribe({ topic: topic, fromBeginning: true }).then();

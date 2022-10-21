@@ -24,12 +24,19 @@ services:
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
       KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
       KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+    healthcheck:
+      test: nc -z localhost 9092 || exit -1
+      start_period: 15s
+      interval: 5s
+      timeout: 10s
+      retries: 10
 
   producer:
     build: ./Producer/
     container_name: producer_01
     depends_on:
-      - broker_01
+      broker_01:
+        condition: service_healthy
     environment:
       CLIENT_ID: producer
       BROKER_01: broker_01:9092
@@ -40,7 +47,8 @@ services:
     build: ./Consumer/
     container_name: consumer_01
     depends_on:
-      - broker_01
+      broker_01:
+        condition: service_healthy
     environment:
       CLIENT_ID: consumer
       BROKER_01: broker_01:9092

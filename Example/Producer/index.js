@@ -8,7 +8,8 @@ const topic = process.env.TOPIC;
 
 const kafka = new Kafka({
     clientId: clientId,
-    brokers: [broker]
+    brokers: [broker],
+    ssl: false
 })
 
 const producer = kafka.producer()
