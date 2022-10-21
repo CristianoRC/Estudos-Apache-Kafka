@@ -31,14 +31,14 @@ services:
       timeout: 10s
       retries: 10
 
-   :
+  admin:
     build: ./Admin/
     container_name: admin
     depends_on:
       broker_01:
         condition: service_healthy
     environment:
-      CLIENT_ID: admin
+      CLIENT_ID: producer
       BROKER_01: broker_01:9092
       TOPIC: Example
       MESSAGES: 50000
