@@ -52,6 +52,14 @@ Sobre o Schema, basicamente é um contrato que o producer precisa seguir para po
 
 ---
 
+### Serializer
+
+Um conceito bem legal no Kafka são os custom serializer, basicamente tu podes adicionar no producer e no consumer uma forma em comum de serialziar a mensagem, e serialziar pode ser uma um padrão comum como JSON, XML... ou até mesmo para casos onde é necessário o uso de criptografia, de um lado você vai ter um serializer que criptografa e do outro o serializer que descriptografa.
+
+<img src="https://www.baeldung.com/wp-content/uploads/2021/08/kafka1.png" width="700px"></img>
+
+
+---
 ### Organização
 
 <img src="https://luby.com.br/wp-content/uploads/2021/05/o-que-e-apache-kafka.png" width="700px"></img>
