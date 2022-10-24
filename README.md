@@ -30,6 +30,11 @@ Agrupa todas as mensagens do meus tipo, ele é usado para enviar e receber as me
 
 Subdivisão de um tópico, conceito base usado para conseguir aguentar uma maior carga
 
+
+### Offset
+
+Como o Apache Kafka guarda os dados em disco, e precisa que esse consumo e escrita sejam rápidos, ele trabalha com offsets, que básicamente são como indices de um array. Além de usar para uma leitura rápida e organização das mensagens, ele usa o index desse offset para saber em qual posição o consumidor está, para saber qual a próxima que deve mandar.
+
 ### Organização
 
 <img src="https://luby.com.br/wp-content/uploads/2021/05/o-que-e-apache-kafka.png" width="700px"></img>
