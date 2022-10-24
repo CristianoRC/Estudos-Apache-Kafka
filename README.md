@@ -45,6 +45,13 @@ Ponto super importante! se no seu grupo de consumidores você tem um número mai
 
 ---
 
+### Schema Registry
+
+É uma API Rest do Kafka usado para gerenciar os seus schemas, que podem ser em JSON, Apache Avro ou Protobuf(padrão usado no gRPC). Essas infomrações são guardadas diretamente no Apache Kafka.
+Sobre o Schema, basicamente é um contrato que o producer precisa seguir para poder mandar mensagem para o Kafka, e na hora de enviar a mensagem, é enviados os dados normalmente, e junto desse paylod também é passado qual o Id do Schema que esta sendo usado.
+
+---
+
 ### Organização
 
 <img src="https://luby.com.br/wp-content/uploads/2021/05/o-que-e-apache-kafka.png" width="700px"></img>
