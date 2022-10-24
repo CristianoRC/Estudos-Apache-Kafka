@@ -8,8 +8,6 @@ O apache Kafka é um sistema de mensageria fundado por funcionários do Liknedin
 
 Um dos conceitos mais diferenetes para os outros sistemas de mensageria é que ele armazena os dados em disco de uma forma eficiente, não precisando manter tudo em memória e permitindo manter esses dados por um determinado intervalo, e ate mesmo processar novamente.
 
-## Estrutura
-
 ### Broker
 
 É um servidor único de Apache Kafka
@@ -43,14 +41,10 @@ Todas as instâncias de um tipo de aplicação ficam agrupadas em um consumer gr
 
 Ponto super importante! se no seu grupo de consumidores você tem um número maior de consumidores que o número de partições, um dos seus consumidores vai ficar em processar nada, apenas gantando sua infra, então tome cuidado.
 
----
-
 ### Schema Registry
 
 É uma API Rest do Kafka usado para gerenciar os seus schemas, que podem ser em JSON, Apache Avro ou Protobuf(padrão usado no gRPC). Essas infomrações são guardadas diretamente no Apache Kafka.
 Sobre o Schema, basicamente é um contrato que o producer precisa seguir para poder mandar mensagem para o Kafka, e na hora de enviar a mensagem, é enviados os dados normalmente, e junto desse paylod também é passado qual o Id do Schema que esta sendo usado.
-
----
 
 ### Serializer
 
